@@ -4,13 +4,19 @@
   "description": "",
   "main": "server.js",
   "scripts": {
+    "build": "tsc",
+    "dev": "ts-node ./src/server.ts",
+    "start": "nodemon ./dist/server.js",
+    "prod": "npm run build && npm run start",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Sikora",
   "license": "ISC",
   "dependencies": {
-    "express": "^4.16.3",
     "@types/node": "7.0.22",
+    "express": "^4.16.3",
+    "mongoose": "^5.2.6",
+    "morgan": "^1.9.0",
     "nodemon": "1.11.0"
   },
   "devDependencies": {

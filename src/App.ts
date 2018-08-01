@@ -1,20 +1,24 @@
-import * as express from 'express'
+import * as express from 'express';
+import * as morgan from 'morgan';
+import { Routes } from './routes/routes';
 
 class App {
-    public express
+  public app: express.Application;
+  public router: Routes = new Routes;
+  constructor () {
+    this.app = express();
+    this.config();
+    this.router.mountRoutes(this.app);
+        
+  }
+  config(): void {
+    this.app.use(express.json());
+    this.app.use(express.urlencoded({ extended: false }));
+    this.app.use(morgan('dev'));
+  }
 
-    constructor () {
-        this.express = express()
-        this.mountRoutes()
-    }
     
-    private mountRoutes () : void {
-        const router = express.Router()
-        router.get('/', (req, res) => {
-            res.json({message: 'Hi'})
-        })
-        this.express.use('/', router)
-    }
+    
 }
 
-export default new App().express
+export default new App().app
